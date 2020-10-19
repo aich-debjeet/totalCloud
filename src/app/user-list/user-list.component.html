@@ -1,0 +1,21 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<!-- <div class="d-flex justify-content-center">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div> -->
+
+<div class="container">
+  <div class="row row-cols-3">
+    <div class="col" *ngFor="let user of list">
+      <div class="card" style="width: 18rem;">
+        <img src={{user?.avatar}} class="card-img-top" alt="...">
+        <div class="card-body">
+          <a style="cursor: pointer;" [routerLink]="['/user',user.id]">
+            <p class="card-text">{{user.first_name}}</p>
+            <p class="card-text">{{user.last_name}}</p></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
