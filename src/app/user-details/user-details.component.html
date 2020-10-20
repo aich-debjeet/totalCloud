@@ -1,4 +1,4 @@
-<div class="card mb-3">
+<div class="card mb-3" *ngIf="userDetails">
   <img src="{{userDetails?.avatar}}" class="card-img-top" alt="...">
   <div class="card-body">
     <p class="text-muted">Id:-{{userDetails?.id}}</p>

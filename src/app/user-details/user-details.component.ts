@@ -15,15 +15,11 @@ export class UserDetailsComponent implements OnInit {
     private route: Router,
     private client: HttpClient
   ) {
-    console.log('hekko');
-
     this.router.params.subscribe(params => {
       if (params['id']) {
         const options =
           { params: new HttpParams().set('id', params['id']) };
-        console.log(params['id']);
         this.client.get('https://reqres.in/api/users?delay=3',options).subscribe((val: any) => {
-          console.log(val);
           this.userDetails = val['data'];
 
         })

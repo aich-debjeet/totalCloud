@@ -11,12 +11,13 @@ import { catchError, retry} from 'rxjs/operators';
 export class UserListComponent implements OnInit {
   title = 'totalCloud';
   list: any;
+  secondaryList: any;
   spinner: boolean = true;
   constructor(private client: HttpClient) { 
     this.client.get('https://reqres.in/api/users?delay=3').subscribe((val:any) =>{
-      console.log(val);
       this.spinner = false;
       this.list = val['data'];
+      this.secondaryList= JSON.parse(JSON.stringify(this.list));
       
     })
   }
@@ -45,6 +46,8 @@ export class UserListComponent implements OnInit {
   
         return 0;
       })
+    } else if(sortString == 'none'){
+      this.list = this.secondaryList;
     }
     
   }
