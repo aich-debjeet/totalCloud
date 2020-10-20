@@ -10,13 +10,43 @@ import { catchError, retry} from 'rxjs/operators';
 })
 export class UserListComponent implements OnInit {
   title = 'totalCloud';
-  list: Array<any>;
+  list: any;
+  spinner: boolean = true;
   constructor(private client: HttpClient) { 
     this.client.get('https://reqres.in/api/users?delay=3').subscribe((val:any) =>{
       console.log(val);
+      this.spinner = false;
       this.list = val['data'];
       
     })
+  }
+  sort(sortString: string){
+    if(sortString == 'first_name'){
+      this.list.sort((a,b)=> {
+        let fa = a.first_name.toLowerCase();
+        let fb = b.first_name.toLowerCase();
+        if(fa<fb)
+        return -1;
+  
+        if(fa> fb)
+        return 1;
+  
+        return 0;
+      })
+    } else if(sortString == 'last_name'){
+      this.list.sort((a,b)=> {
+        let fa = a.last_name.toLowerCase();
+        let fb = b.last_name.toLowerCase();
+        if(fa<fb)
+        return -1;
+  
+        if(fa> fb)
+        return 1;
+  
+        return 0;
+      })
+    }
+    
   }
 
   ngOnInit() {
